@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.gradient-mask-l-0 {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20px);
+  mask-image: linear-gradient(to right, transparent, black 20px);
+}
+
+.gradient-mask-r-0 {
+  -webkit-mask-image: linear-gradient(to left, transparent, black 20px);
+  mask-image: linear-gradient(to left, transparent, black 20px);
+}
+
+.font-onest {
+  font-family: 'Onest', system-ui, sans-serif;
+}
+
+@media (hover: hover) {
+  .group:hover {
+    transform: translateY(-2px);
+  }
+}

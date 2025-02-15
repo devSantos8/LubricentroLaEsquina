@@ -1,11 +1,536 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// styles
+import "../styles/global.css";
+
+// layout
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// componentes
+import Container from '../components/Container.astro';
+import Testimonios from '../components/Reseñas.astro';
+import FadeIn from '../components/FadeIn.astro';
+
+// variables
+export let title = 'Inicio';
+
+// Scroll to top on page load
+if (typeof window !== 'undefined') {
+    window.history.scrollRestoration = 'manual';
+}
 ---
 
 <Layout>
-	<Welcome />
+    <main>
+        <FadeIn>
+            <div class="relative overflow-hidden" style="margin-top: -64px; padding-top: 64px;">
+                <!-- Imagen de fondo con efecto parallax -->
+                <div 
+                    id="parallax-bg" 
+                    class="absolute inset-0 z-0 transform"
+                    style="transform: scale(1.1); will-change: transform;"
+                >
+                    <img 
+                        src="/img/banners/bg.png" 
+                        alt="Background" 
+                        class="w-full h-full object-cover"
+                        loading="eager"
+                        decoding="sync"
+                    />
+                    <!-- Overlay simplificado sin efectos de difuminado -->
+                    <div class="absolute inset-0 bg-black/40"></div>
+                </div>
+
+                <!-- Container específico para el header con padding-y más reducido -->
+                <div class="relative px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl py-8 sm:py-12">
+                    <div class="relative z-10">
+                        <div class="py-8 sm:py-12">
+                            <div class="hidden sm:mb-6 sm:flex">
+                                <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-100 ring-1 ring-gray-100/10 hover:ring-gray-100/20 backdrop-blur-sm">
+                                    ¡Servicio express disponible! Mantenimiento profesional sin citas previas. <a href="/servicios" class="font-semibold text-red-400"><span class="absolute inset-0" aria-hidden="true"></span>Ver servicios <span aria-hidden="true">&rarr;</span></a>
+                                </div>
+                            </div>
+                            <div class="text-left max-w-4xl">
+                                <h1 class="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">Lubricentro La Esquina</h1>
+                                <p class="mt-6 text-lg font-medium text-pretty text-gray-200 sm:text-xl/8">Expertos en mantenimiento automotriz con más de 15 años de experiencia. 
+                                    Ofrecemos servicios profesionales de cambio de aceite, filtros y lubricación completa para mantener su vehículo en óptimas condiciones.</p>
+                                <div class="mt-8 flex items-center justify-start gap-x-6">
+                                    <a href="/contacto" class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Contactenos!</a>
+                                    <a href="/servicios" class="text-sm font-semibold text-white py-2.5">Nuestros Servicios <span aria-hidden="true">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </FadeIn>
+
+        <FadeIn delay="0.2s">
+            <!-- Stats Section Style -->
+            <div class="relative -mt-12 z-10">
+                <Container>
+                    <div class="mx-auto max-w-6xl px-4 lg:px-8">
+                        <div class="bg-white rounded-2xl shadow-xl ring-1 ring-gray-200/50 py-8">
+                            <div class="mx-auto max-w-2xl lg:max-w-none mb-4">
+                                <p class="text-base font-semibold leading-7 text-red-600 text-center">Nuestros Colaboradores</p>
+                                <h2 class="mt-1 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
+                                    Con la confianza de las marcas más reconocidas
+                                </h2>
+                            </div>
+                            
+                            <div class="relative px-8">
+                                <!-- Gradientes para los bordes -->
+                                <div class="pointer-events-none absolute left-8 top-0 w-16 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
+                                <div class="pointer-events-none absolute right-8 top-0 w-16 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
+                                
+                                <!-- Contenedor del marquee -->
+                                <div class="overflow-hidden">
+                                    <div class="brands-slider flex">
+                                        <!-- Primer set de logos -->
+                                        <div class="flex-shrink-0 flex items-center gap-12 min-w-max px-4">
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/mobil.svg" alt="Mobil" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/shell.svg" alt="Shell" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Liqui-moly.svg" alt="Liqui Moly" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/4/40/Castrol_logo_2023.svg" alt="Castrol" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Petro_canada_logo.jpg" alt="Petro Canada" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Pennzoil_textlogo.png" alt="Pennzoil" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Repsol_logo.svg" alt="Repsol" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/lubrax.svg" alt="Lubrax" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/valvoline.svg" alt="Valvoline" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/motul.svg" alt="Motul" />
+                                        </div>
+                                        <!-- Duplicado del primer set para animación continua -->
+                                        <div class="flex-shrink-0 flex items-center gap-12 min-w-max px-4">
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/mobil.svg" alt="Mobil" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/shell.svg" alt="Shell" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Liqui-moly.svg" alt="Liqui Moly" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/4/40/Castrol_logo_2023.svg" alt="Castrol" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Petro_canada_logo.jpg" alt="Petro Canada" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Pennzoil_textlogo.png" alt="Pennzoil" />
+                                            <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Repsol_logo.svg" alt="Repsol" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/lubrax.svg" alt="Lubrax" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/valvoline.svg" alt="Valvoline" />
+                                            <img class="w-24 h-12 object-contain" src="/img/logo/motul.svg" alt="Motul" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+        </FadeIn>
+
+        <FadeIn delay="0.2s">
+            <Container> <!-- Cartas Servicios -->
+                <div class="bg-white py-16 sm:py-20">
+                    <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+                        <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+                            <p class="text-base font-semibold leading-7 text-red-600">¿En que te podemos ayudar?</p>
+                            <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Te ofrecemos múltiples servicios profesionales</h2>
+                            <p class="mt-6 text-lg leading-8 text-gray-600">Nuestro equipo de expertos está listo para atender todas tus necesidades de mantenimiento automotriz.</p>
+                        </div>
+                        <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+                            <div class="relative lg:row-span-2">
+                                <div class="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+                                <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+                                    <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+                                        <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Síguenos en Redes Sociales</p>
+                                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Mantente al tanto de nuestros servicios, promociones y consejos de mantenimiento a través de nuestras redes sociales. ¡Síguenos en Instagram y contáctanos por WhatsApp para una atención personalizada!</p>
+                                    </div>
+                                    <div class="@container relative min-h-[30rem] w-full grow max-lg:mx-auto max-lg:max-w-sm">
+                                        <div class="absolute inset-x-0 top-0 bottom-0">
+                                            <img class="h-full w-full object-cover" src="/img/redes.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 lg:rounded-l-[2rem]"></div>
+                            </div>
+                            <div class="relative max-lg:row-start-1">
+                                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"></div>
+                                <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
+                                    <div class="px-8 pt-6 sm:px-10 sm:pt-8">
+                                        <p class="text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Métodos de Pago</p>
+                                        <p class="mt-2 mb-4 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Aceptamos múltiples formas de pago para tu comodidad</p>
+                                        <div class="flex flex-col gap-3">
+                                            <div class="flex items-center gap-3 w-full bg-gray-50 p-2.5 rounded-lg hover:bg-gray-100 transition-colors">
+                                                <svg class="h-7 w-7 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                                </svg>
+                                                <span class="text-gray-700">Tarjetas de Débito y Crédito</span>
+                                            </div>
+                                            
+                                            <div class="flex items-center gap-3 w-full bg-gray-50 p-2.5 rounded-lg hover:bg-gray-100 transition-colors">
+                                                <svg class="h-7 w-7 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                                </svg>
+                                                <span class="text-gray-700">Efectivo</span>
+                                            </div>
+                                        
+                                            <div class="flex items-center gap-3 w-full bg-gray-50 p-2.5 rounded-lg hover:bg-gray-100 transition-colors">
+                                                <svg class="h-7 w-7 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                                                </svg>
+                                                <span class="text-gray-700">Transferencia Bancaria</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-t-[2rem]"></div>
+                            </div>
+                            <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+                                <div class="absolute inset-px rounded-lg bg-white"></div>
+                                <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
+                                    <div class="px-8 pt-6 sm:px-10 sm:pt-8">
+                                        <div class="flex items-center gap-x-3 mb-4">
+                                            <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <p class="text-lg font-medium tracking-tight text-gray-950">Servicio Express</p>
+                                        </div>
+                                        <p class="text-sm/6 text-gray-600">Mantenimiento rápido y eficiente sin cita previa. ¡Su tiempo es valioso y lo respetamos!</p>
+                                        
+                                        <div class="mt-6 flex flex-col gap-3">
+                                            <div class="flex items-center gap-x-3">
+                                                <svg class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-sm text-gray-600">Atención inmediata</span>
+                                            </div>
+                                            <div class="flex items-center gap-x-3">
+                                                <svg class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-sm text-gray-600">Servicio profesional</span>
+                                            </div>
+                                            <div class="flex items-center gap-x-3">
+                                                <svg class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-sm text-gray-600">Diagnóstico rápido</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5"></div>
+                            </div>
+                            <div class="relative lg:row-span-2">
+                                <div class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+                                <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+                                    <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+                                        <p class="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Mantenimiento Integral</p>
+                                        <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Ofrecemos servicios completos de lubricación, cambio de filtros, cambios de aceite, 
+                                            afinación y revisión de sistemas críticos para mantener su vehículo en óptimas condiciones.</p>
+                                    </div>
+                                    <div class="relative min-h-[28rem] w-full grow">
+                                        <div class="absolute inset-0 flex items-end justify-end">
+                                            <img class="max-h-[500px] w-auto object-contain" src="/img/2img.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+        </FadeIn>
+
+        <FadeIn>
+            <!-- Sección con imagen de fondo -->
+            <div class="relative">
+                <!-- Imagen de fondo -->
+                <div class="absolute inset-0 z-0">
+                    <img 
+                        src="/img/banners/index-bg.png" 
+                        alt="Background" 
+                        class="w-full h-full object-cover"
+                    />
+                    <!-- Overlay con gradiente para mejor legibilidad -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/70"></div>
+                </div>
+
+                <div class="relative z-10 py-16">
+                    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                        <div class="mx-auto max-w-2xl lg:max-w-none">
+                            <div class="text-center">
+                                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Confían en nosotros!!</h2>
+                                <p class="mt-4 text-lg leading-8 text-gray-200">
+                                    Más de 1,000 clientes satisfechos avalan nuestro servicio profesional
+                                </p>
+                            </div>
+                            <dl class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-3">
+                                <div class="flex flex-col bg-black/30 backdrop-blur-sm p-8">
+                                    <dt class="text-sm font-semibold leading-6 text-gray-200">Años de Experiencia</dt>
+                                    <dd class="order-first text-3xl font-semibold tracking-tight text-white">35+</dd>
+                                </div>
+                                <div class="flex flex-col bg-black/30 backdrop-blur-sm p-8">
+                                    <dt class="text-sm font-semibold leading-6 text-gray-200">Clientes Satisfechos</dt>
+                                    <dd class="order-first text-3xl font-semibold tracking-tight text-white">98%</dd>
+                                </div>
+                                <div class="flex flex-col bg-black/30 backdrop-blur-sm p-8">
+                                    <dt class="text-sm font-semibold leading-6 text-gray-200">Servicios Realizados</dt>
+                                    <dd class="order-first text-3xl font-semibold tracking-tight text-white">10000+</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </FadeIn>
+
+        <!-- Sección Galería -->
+        <FadeIn delay="0.2s">
+            <Container>
+                <div class="bg-white pt-24 pb-16"> <!-- Cambiado: agregado pt-24 para más espacio arriba -->
+                    <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+                        <div class="mx-auto max-w-2xl text-center">
+                            <p class="text-base font-semibold leading-7 text-red-600">Nuestro Catálogo</p>
+                            <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Productos en Tienda</h2>
+                            <p class="mt-6 text-lg leading-8 text-gray-600">Descubre nuestra amplia selección de productos de las mejores marcas para tu vehículo.</p>
+                        </div>
+                        <div class="mt-16">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <!-- Tarjeta 1 - Aceites Premium -->
+                                <div class="group relative overflow-hidden rounded-2xl p-4">
+                                    <div class="aspect-w-4 aspect-h-3">
+                                        <img 
+                                            src="/img/productos/shell-helix-0w30.webp" 
+                                            alt="Aceites Premium"
+                                            class="h-full w-full object-contain object-center transition duration-300 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <h3 class="text-lg font-semibold text-gray-900">Aceites Premium</h3>
+                                        <p class="mt-1 text-sm text-gray-600">Amplia gama de aceites sintéticos de alta calidad</p>
+                                    </div>
+                                </div>
+
+                                <!-- Tarjeta 2 - Aceites Semisintéticos -->
+                                <div class="group relative overflow-hidden rounded-2xl p-4">
+                                    <div class="aspect-w-4 aspect-h-3">
+                                        <img 
+                                            src="/img/productos/mobil-super-2000.webp" 
+                                            alt="Aceites Semisintéticos"
+                                            class="h-full w-full object-contain object-center transition duration-300 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <h3 class="text-lg font-semibold text-gray-900">Aceites Semisintéticos</h3>
+                                        <p class="mt-1 text-sm text-gray-600">Excelente relación calidad-precio para tu vehículo</p>
+                                    </div>
+                                </div>
+
+                                <!-- Tarjeta 3 - Aceites Especiales -->
+                                <div class="group relative overflow-hidden rounded-2xl p-4">
+                                    <div class="aspect-w-4 aspect-h-3">
+                                        <img 
+                                            src="/img/productos/liquimoly-5w30-hightech.webp" 
+                                            alt="Aceites Especiales"
+                                            class="h-full w-full object-contain object-center transition duration-300 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <h3 class="text-lg font-semibold text-gray-900">Aceites Especiales</h3>
+                                        <p class="mt-1 text-sm text-gray-600">Específicos para vehículos de alto rendimiento</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón Ver Más -->
+                        <div class="mt-12 text-center">
+                            <a 
+                                href="/productos" 
+                                class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all duration-300"
+                            >
+                                Ver Catálogo Completo
+                                <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+        </FadeIn>
+
+        <!-- Decorative corner -->
+        <div class="absolute right-0 top-full w-screen h-4 -translate-y-4 transform-gpu overflow-hidden">
+            <svg class="absolute inset-0 h-full w-full" preserveAspectRatio="none">
+                <path class="fill-red-600" d="M0 0L100 0C50 0 0 100 0 100L0 0Z"></path>
+            </svg>
+        </div>
+
+        <!-- Sección Testimonios -->
+        <FadeIn>
+            <Container>
+                <div class="bg-white pt-8"> <!-- Cambiado py-8 a pt-8 -->
+                    <Testimonios />
+                </div>
+            </Container>
+        </FadeIn>
+
+        <FadeIn delay="0.2s">
+            <Container> <!-- Horarios y Ubicación -->
+                <div class="bg-white py-8"> <!-- Reducido a py-8 -->
+                    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                        <div class="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
+                            <!-- Horarios -->
+                            <div class="mx-auto w-full max-w-xl lg:mx-0">
+                                <h2 class="text-3xl font-bold tracking-tight text-gray-900">Horario de Atención</h2>
+                                <dl class="mt-8 space-y-6 text-base leading-7 text-gray-600">
+                                    <div class="relative pl-9">
+                                        <dt class="inline font-semibold text-gray-900">
+                                            <svg class="absolute left-0 top-1 h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                                            </svg>
+                                            Lunes a Viernes:
+                                        </dt>
+                                        <dd class="inline"> 9:00 AM - 7:00 PM</dd>
+                                    </div>
+                                    <div class="relative pl-9">
+                                        <dt class="inline font-semibold text-gray-900">
+                                            <svg class="absolute left-0 top-1 h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                                            </svg>
+                                            Sábados:
+                                        </dt>
+                                        <dd class="inline"> 9:00 AM - 4:00 PM</dd>
+                                    </div>
+                                    <div class="relative pl-9">
+                                        <dt class="inline font-semibold text-gray-900">
+                                            <svg class="absolute left-0 top-1 h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                                            </svg>
+                                            Domingos:
+                                        </dt>
+                                        <dd class="inline"> Cerrado</dd>
+                                    </div>
+                                </dl>
+                                <div class="mt-10">
+                                    <h3 class="text-lg font-semibold text-gray-900">Dirección</h3>
+                                    <p class="mt-4 text-base leading-7 text-gray-600">
+                                        Av salvador allende, Av. Las Industrias 201<br>
+                                        San Joaquin, Region Metropolitana
+                                    </p>
+                                    <a href="/contacto" class="mt-8 inline-flex items-center text-sm font-semibold text-red-600 hover:text-red-500">
+                                        Contactar ahora
+                                        <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Mapa -->
+                            <div class="mx-auto w-full max-w-xl lg:mx-0">
+                                <div class="rounded-lg overflow-hidden shadow-lg">
+                                    <iframe 
+                                        class="w-full h-[400px]" 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3327.2105600871505!2d-70.6314644234341!3d-33.495898499842546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662db87d0030383%3A0xf2a051a52f67b160!2sLUBRICENTRO%20LA%20ESQUINA!5e0!3m2!1ses-419!2scl!4v1738964158256!5m2!1ses-419!2scl" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+        </FadeIn>
+
+    </main>
 </Layout>
+
+<script>
+    const parallaxBg = document.getElementById('parallax-bg');
+    const initialScale = 1.1;
+    
+    window.addEventListener('scroll', () => {
+        if (parallaxBg) {
+            const scrolled = window.pageYOffset;
+            const val = scrolled * 0.5;
+            parallaxBg.style.transform = `translate3d(0, ${val}px, 0) scale(${initialScale})`;
+        }
+    }, { passive: true });
+</script>
+
+<style>
+    .bg-gradient-pattern {
+        background-image: linear-gradient(45deg, var(--tw-gradient-stops));
+        background-size: 100% 100%;
+        background-position: 0 0;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+    }
+    .gradient-mask-l-0 {
+        background: linear-gradient(to right, white 0%, transparent 100%);
+    }
+    .gradient-mask-r-0 {
+        background: linear-gradient(to left, white 0%, transparent 100%);
+    }
+    @keyframes marquee-reverse {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+    }
+    .animate-marquee-reverse {
+        animation: marquee-reverse 40s linear infinite;
+    }
+    .brands-slider {
+        animation: slide 30s linear infinite;
+        will-change: transform;
+        display: flex;
+    }
+
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 640px) {
+        .brands-slider {
+            animation-duration: 20s;
+        }
+        .brands-slider img {
+            width: 5rem;
+            height: 2.5rem;
+        }
+        .brands-slider .flex {
+            gap: 2rem;
+        }
+    }
+
+    /* Optimizaciones de rendimiento */
+    .brands-slider img {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+
+    .overflow-hidden {
+        overflow: hidden; /* Mantener solo esta propiedad */
+    }
+
+    .aspect-w-4 {
+        position: relative;
+        padding-bottom: 75%; /* 3:4 Aspect Ratio */
+    }
+
+    .aspect-w-4 > img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>

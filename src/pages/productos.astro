@@ -1,0 +1,586 @@
+---
+import "../styles/global.css";
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/Container.astro';
+import FadeIn from '../components/FadeIn.astro';
+import ParallaxHero from '../components/ParallaxHero.astro';
+
+const productos = [
+    {
+        nombre: "Shell Helix HX7 10w-40",
+        precio: "$42.500",
+        stock: "disponible",
+        imagen: "/img/productos/shell-helix-10w40.webp",
+        litros: "4 litros",
+        aplicacion: "Ideal para vehículos a gasolina, gas y diésel con más de 100,000 km",
+        descripcion: "Aceite semisintético que brinda excelente protección contra el desgaste y limpieza del motor"
+    },
+    {
+        nombre: "Mobil Super 2000 10w-40",
+        precio: "$42.500",
+        stock: "disponible",
+        imagen: "/img/productos/mobil-super-2000.webp",
+        litros: "4 litros",
+        aplicacion: "Recomendado para vehículos a gasolina y diésel de uso diario",
+        descripcion: "Aceite semisintético con tecnología anti-desgaste y control de depósitos"
+    },
+    {
+        nombre: "Lubrax SN 10w-40",
+        precio: "$35.000",
+        stock: "disponible",
+        imagen: "/img/productos/lubrax-sn-10w40.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos a gasolina que requieren aceite API SN",
+        descripcion: "Aceite semisintético con excelente rendimiento y protección del motor"
+    },
+    {
+        nombre: "Gti4 5w-30",
+        precio: "$39.500",
+        stock: "disponible",
+        imagen: "/img/productos/gti4-5w30.webp",
+        litros: "4 litros",
+        aplicacion: "Especial para motores modernos que requieren 5w-30",
+        descripcion: "Aceite sintético de alto rendimiento para motores modernos"
+    },
+    {
+        nombre: "Shell Helix Ultra 0w-30 ect",
+        precio: "$98.000",
+        stock: "disponible",
+        imagen: "/img/productos/shell-helix-0w30.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos europeos de alto rendimiento",
+        descripcion: "Aceite 100% sintético de máxima tecnología y rendimiento"
+    },
+    {
+        nombre: "Mobil 1 ESP 5w-30",
+        precio: "$79.000",
+        stock: "disponible",
+        imagen: "/img/productos/mobil1-5w30.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos europeos con sistemas de post-tratamiento",
+        descripcion: "Aceite sintético de alta gama con tecnología ESP para emisiones"
+    },
+    {
+        nombre: "Shell Helix Ultra 0w-20 sp",
+        precio: "$98.000",
+        stock: "disponible",
+        imagen: "/img/productos/shell-helix-0w20.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos modernos que requieren 0w-20",
+        descripcion: "Aceite 100% sintético de última generación API SP"
+    },
+    {
+        nombre: "Castrol GTX 5w-30",
+        precio: "$32.500",
+        stock: "disponible",
+        imagen: "/img/productos/castrol-10w40.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos que requieren viscosidad 5w-30",
+        descripcion: "Aceite mineral de alta calidad y protección"
+    },
+    {
+        nombre: "Liqui Moly 5w-30 Longtime H.T.",
+        precio: "$87.000",
+        stock: "disponible",
+        imagen: "/img/productos/liquimoly-5w30-hightech.webp",
+        litros: "5 litros",
+        aplicacion: "Especial para vehículos alemanes de alto rendimiento",
+        descripcion: "Aceite sintético de alta tecnología alemana"
+    },
+    {
+        nombre: "Pennzoil EuroL 5w-30",
+        precio: "$65.000",
+        stock: "disponible",
+        imagen: "/img/productos/pennzoil-euroL-5w30.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos europeos modernos",
+        descripcion: "Aceite sintético con tecnología PurePlus"
+    },
+    {
+        nombre: "Mannol Energy Premium 5w-30",
+        precio: "$62.000",
+        stock: "disponible",
+        imagen: "/img/productos/mannol-energypremium-5w30.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos que requieren ACEA C3",
+        descripcion: "Aceite sintético con tecnología alemana"
+    },
+    {
+        nombre: "Gti3 10w-40",
+        precio: "$35.000",
+        stock: "disponible",
+        imagen: "/img/productos/gti3-10w40.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos a gasolina y GLP",
+        descripcion: "Aceite semisintético de buena relación calidad-precio"
+    },
+    {
+        nombre: "Benzol Gold Performance 10w-40",
+        precio: "$35.000",
+        stock: "disponible",
+        imagen: "/img/productos/benzol-gp-10w40.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos a gasolina de uso diario",
+        descripcion: "Aceite semisintético con buena protección"
+    },
+    {
+        nombre: "Federal SUPER 10w-40",
+        precio: "$30.000",
+        stock: "disponible",
+        imagen: "/img/productos/federal-super-10w40.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos a gasolina",
+        descripcion: "Aceite mineral de buena calidad para uso diario"
+    },
+    {
+        nombre: "Mobil Delvac MX 15w-40",
+        precio: "$39.500",
+        stock: "disponible",
+        imagen: "/img/productos/mobil-delvac-15w40.webp",
+        litros: "4 litros",
+        aplicacion: "Especial para motores diésel de trabajo pesado",
+        descripcion: "Aceite mineral de alto rendimiento para camiones y maquinaria pesada"
+    },
+    {
+        nombre: "Castrol Driver 10w-40",
+        precio: "$32.500",
+        stock: "disponible",
+        imagen: "/img/productos/repsol-driver-10w40.webp",
+        litros: "4 litros",
+        aplicacion: "Para vehículos a gasolina de uso diario",
+        descripcion: "Aceite semisintético con protección confiable para motores de uso regular"
+    },
+    
+];
+
+const marcasDestacadas = [
+    { nombre: "Shell", logo: "/src/assets/logo/shell.svg" },
+    { nombre: "Mobil", logo: "/src/assets/logo/mobil.svg" },
+    { nombre: "Castrol", logo: "/src/assets/logo/castrol.svg" },
+    { nombre: "Total", logo: "/src/assets/logo/total.svg" },
+    // Añade más marcas según necesites
+];
+
+const beneficios = [
+    {
+        titulo: "Productos Originales",
+        descripcion: "Garantizamos la autenticidad de todos nuestros productos",
+        icono: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />`
+    },
+    {
+        titulo: "Asesoría Especializada",
+        descripcion: "Personal capacitado para recomendarte el mejor producto",
+        icono: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />`
+    },
+    {
+        titulo: "Instalación Incluida",
+        descripcion: "Servicio de instalación profesional sin costo adicional",
+        icono: `<path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />`
+    }
+];
+
+export let title = 'Productos';
+---
+
+<Layout>
+    <main>
+        <FadeIn>
+            <ParallaxHero
+                imageSrc="/img/banners/producto.webp"
+                imageAlt="Background"
+            >
+                <Container>
+                    <div class="py-24 sm:py-32">
+                        <div class="mx-auto max-w-3xl text-center">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium text-red-400 bg-red-400/10 rounded-full mb-6">
+                                <span class="w-1 h-1 rounded-full bg-red-400"></span>
+                                Nuestros Productos
+                                <span class="w-1 h-1 rounded-full bg-red-400"></span>
+                            </span>
+                            <h1 class="text-5xl font-bold tracking-tight text-white sm:text-6xl mb-8 [text-wrap:balance]">
+                                Productos de Alta Calidad para tu Vehículo
+                            </h1>
+                            <p class="text-xl/8 text-gray-300 mx-auto max-w-2xl">
+                                Descubre nuestra selección premium de productos de las marcas más reconocidas del mercado automotriz.
+                            </p>
+                        </div>
+                    </div>
+                </Container>
+            </ParallaxHero>
+        </FadeIn>
+
+        <div class="bg-white py-8">
+            <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+                <FadeIn delay="0.2s">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
+                        <div>
+                            <span class="block text-sm font-semibold text-red-600 mb-2">Catálogo</span>
+                            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Productos Destacados</h2>
+                        </div>
+                    </div>
+                </FadeIn>
+
+                <div class="grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {productos.map((producto, index) => (
+                        <FadeIn delay={`${0.1 + (index * 0.05)}s`}>
+                            <div class="group relative cursor-pointer" 
+                                 data-litros={producto.litros}
+                                 data-aplicacion={producto.aplicacion}
+                                 data-descripcion={producto.descripcion}>
+                                <div class="min-h-[280px] w-full overflow-hidden rounded-lg bg-white p-4 flex items-center justify-center">
+                                    <img 
+                                        src={producto.imagen} 
+                                        alt={producto.nombre}
+                                        class="h-[240px] w-auto object-contain object-center group-hover:opacity-75 transition-opacity"
+                                    />
+                                </div>
+                                <div class="mt-4 flex justify-between">
+                                    <div>
+                                        <h3 class="text-sm text-gray-700">
+                                            <span class="absolute inset-0"></span>
+                                            {producto.nombre}
+                                        </h3>
+                                        <p class={`mt-1 text-sm ${
+                                            producto.stock === 'disponible' ? 'text-green-600' : 
+                                            producto.stock === 'bajo' ? 'text-yellow-600' : 
+                                            'text-red-600'
+                                        }`}>
+                                            {producto.stock.charAt(0).toUpperCase() + producto.stock.slice(1)}
+                                        </p>
+                                    </div>
+                                    <p class="text-sm font-medium text-gray-900">{producto.precio}</p>
+                                </div>
+                            </div>
+                        </FadeIn>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <FadeIn delay="0.2s">
+            <div class="bg-white py-16">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col lg:flex-row gap-12 items-center">
+                        <!-- Texto y CTA -->
+                        <div class="w-full lg:w-1/3">
+                            <span class="block text-sm font-semibold text-red-600 mb-2">No encuentras lo que buscas?</span>
+                            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">Visitanos en Tienda</h2>
+                            <p class="text-lg text-gray-600 mb-8">Contamos con un extenso inventario de productos para todo tipo de vehículos. Visítanos y encuentra exactamente lo que necesitas.</p>
+                            <a href="https://wa.me/56912345678" 
+                               class="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                </svg>
+                                Consultar Disponibilidad
+                            </a>
+                        </div>
+
+                        <!-- Imágenes -->
+                        <div class="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="group relative rounded-2xl overflow-hidden shadow-xl">
+                                <img 
+                                    src="/img/galeria/prod1.webp" 
+                                    alt="Nuestro inventario" 
+                                    class="w-full h-[400px] object-cover transform transition-transform duration-300 group-hover:scale-105"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 p-8">
+                                    <h3 class="text-2xl font-bold text-white mb-3">Amplio Stock</h3>
+                                    <p class="text-gray-200 text-lg">Encuentra todo lo que necesitas para tu vehículo en un solo lugar</p>
+                                </div>
+                            </div>
+
+                            <div class="group relative rounded-2xl overflow-hidden shadow-xl">
+                                <img 
+                                    src="/img/galeria/prod2.webp" 
+                                    alt="Nuestro equipo" 
+                                    class="w-full h-[400px] object-cover transform transition-transform duration-300 group-hover:scale-105"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 p-8">
+                                    <h3 class="text-2xl font-bold text-white mb-3">Asesoría Experta</h3>
+                                    <p class="text-gray-200 text-lg">Recibe orientación profesional para elegir los mejores productos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </FadeIn>
+        <FadeIn delay="0.3s">
+            <div class="bg-gray-50/50 py-16">
+                <Container>
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">Marcas de Confianza</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto">Trabajamos con las marcas más reconocidas del mercado para garantizar la mejor calidad en todos nuestros productos.</p>
+                    </div>
+                    
+                    <div class="relative px-4">
+                        <div class="pointer-events-none absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-gray-50/50 to-transparent z-10"></div>
+                        <div class="pointer-events-none absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-gray-50/50 to-transparent z-10"></div>
+                        
+                        <div class="overflow-hidden">
+                            <div class="brands-slider flex">
+                                <div class="flex-shrink-0 flex items-center gap-12 min-w-max px-4">
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/mobil.svg" alt="Mobil" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/shell.svg" alt="Shell" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Liqui-moly.svg" alt="Liqui Moly" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/4/40/Castrol_logo_2023.svg" alt="Castrol" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Petro_canada_logo.jpg" alt="Petro Canada" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Pennzoil_textlogo.png" alt="Pennzoil" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Repsol_logo.svg" alt="Repsol" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/lubrax.svg" alt="Lubrax" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/valvoline.svg" alt="Valvoline" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/motul.svg" alt="Motul" />
+                                </div>
+                                <div class="flex-shrink-0 flex items-center gap-12 min-w-max px-4">
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/mobil.svg" alt="Mobil" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/shell.svg" alt="Shell" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Liqui-moly.svg" alt="Liqui Moly" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/4/40/Castrol_logo_2023.svg" alt="Castrol" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Petro_canada_logo.jpg" alt="Petro Canada" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Pennzoil_textlogo.png" alt="Pennzoil" />
+                                    <img class="w-24 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Repsol_logo.svg" alt="Repsol" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/lubrax.svg" alt="Lubrax" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/valvoline.svg" alt="Valvoline" />
+                                    <img class="w-24 h-12 object-contain" src="/img/logo/motul.svg" alt="Motul" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+        </FadeIn>
+
+        <div class="bg-gray-50/50 py-8 sm:py-16">
+            <Container>
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="relative isolate overflow-hidden bg-gradient-to-b from-red-600/90 to-red-700/90 rounded-3xl">
+                        <div class="mx-auto max-w-4xl px-6 py-8 sm:py-16 text-center">
+                            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                                ¿No encuentras lo que buscas?
+                            </h2>
+                            <p class="mx-auto mt-2 sm:mt-4 max-w-xl text-base sm:text-lg leading-7 text-red-100">
+                                Contáctanos y te ayudamos a encontrar el producto ideal para tu vehículo.
+                            </p>
+                            <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                                <a href="/contacto" 
+                                   class="rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-red-600 shadow-sm hover:bg-red-50 transition-all duration-300">
+                                    Visitar tienda
+                                </a>
+                                <a href="https://wa.me/56912345678" 
+                                   class="rounded-xl bg-red-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-800 transition-all duration-300">
+                                    Contactar ahora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+        </div>
+    </main>
+</Layout>
+
+<div id="productoModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <div class="fixed inset-0 flex items-center justify-center p-4">
+        <div class="relative bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl">
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-500">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="w-full md:w-1/3">
+                    <img id="modalImagen" src="" alt="" class="w-full h-auto rounded-lg">
+                </div>
+
+                <div class="w-full md:w-2/3">
+                    <h3 id="modalNombre" class="text-xl font-bold text-gray-900 mb-2"></h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg font-semibold text-red-600" id="modalPrecio"></span>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                                <span id="modalLitros" class="text-gray-600"></span>
+                            </div>
+                            
+                            <div class="flex items-start gap-2">
+                                <svg class="w-5 h-5 text-gray-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                                <span id="modalAplicacion" class="text-gray-600"></span>
+                            </div>
+                        </div>
+
+                        <p id="modalDescripcion" class="text-gray-600 mt-4"></p>
+
+                        <div class="flex gap-4 mt-6">
+                            <a href="https://wa.me/56912345678" 
+                               class="flex items-center justify-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-sm font-semibold text-white hover:bg-green-600">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                </svg>
+                                Consultar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    function setupModal() {
+        const modal = document.getElementById('productoModal');
+        const closeBtn = document.getElementById('closeModal');
+        const productos = document.querySelectorAll('.group.relative');
+        
+        productos.forEach(producto => {
+            producto.addEventListener('click', (e) => {
+                const nombre = producto.querySelector('h3').textContent;
+                const precio = producto.querySelector('.text-gray-900').textContent;
+                const imagen = producto.querySelector('img').src;
+                const litros = producto.dataset.litros;
+                const aplicacion = producto.dataset.aplicacion;
+                const descripcion = producto.dataset.descripcion;
+
+                document.getElementById('modalNombre').textContent = nombre;
+                document.getElementById('modalPrecio').textContent = precio;
+                document.getElementById('modalImagen').src = imagen;
+                document.getElementById('modalLitros').textContent = litros;
+                document.getElementById('modalAplicacion').textContent = aplicacion;
+                document.getElementById('modalDescripcion').textContent = descripcion;
+                
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn?.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        modal?.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    document.addEventListener('astro:page-load', setupModal);
+    setupModal();
+</script>
+
+<style>
+    .aspect-h-1 {
+        aspect-ratio: 1 / 1;
+    }
+
+    .brands-slider {
+        animation: slide 30s linear infinite;
+        will-change: transform;
+        display: flex;
+    }
+
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .brands-slider img {
+        transition: all 0.3s ease;
+        filter: grayscale(100%);
+    }
+
+    .brands-slider img:hover {
+        filter: grayscale(0%);
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 640px) {
+        .brands-slider {
+            animation-duration: 20s;
+        }
+        .brands-slider img {
+            width: 5rem;
+            height: 2.5rem;
+        }
+        .brands-slider .flex {
+            gap: 2rem;
+        }
+    }
+
+    /* Asegura que el contenido inicial esté visible sin scroll */
+    main {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    /* Estilos específicos para la grid de productos en móvil */
+    @media (max-width: 640px) {
+        .productos-grid {
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
+        }
+    }
+
+    /* Mantener visibilidad al cambiar tamaño de ventana */
+    @media (max-width: 640px) {
+        .scroll-animate {
+            opacity: 0.8 !important;
+            transform: translateY(10px) !important;
+            transition: all 0.3s ease-out !important;
+        }
+        .scroll-animate.show {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+    }
+
+    /* Optimizar rendimiento */
+    .group {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+</style>
+
+<script>
+    function handleProductsVisibility() {
+        if (window.innerWidth <= 640) {
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.scroll-animate').forEach(el => {
+                    el.classList.add('show');
+                });
+            });
+        }
+
+        let resizeTimeout: number | undefined;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                if (window.innerWidth <= 640) {
+                    document.querySelectorAll('.scroll-animate').forEach(el => {
+                        el.classList.add('show');
+                    });
+                }
+            }, 150);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', handleProductsVisibility);
+    } else {
+        handleProductsVisibility();
+    }
+    document.addEventListener('astro:page-load', handleProductsVisibility);
+</script>

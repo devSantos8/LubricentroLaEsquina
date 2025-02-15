@@ -1,0 +1,186 @@
+---
+const reviews = [
+    {
+        name: "Roberto González",
+        role: "Cliente Frecuente",
+        image: "/img/avatars/avatar-1.jpg",
+        content: "Excelente servicio y profesionalismo. Siempre confío en ellos para el mantenimiento de mi vehículo.",
+        rating: 5,
+        badge: "Cliente Verificado"
+    },
+    {
+        name: "María Fernanda Silva",
+        role: "Cliente Nueva",
+        image: "/img/avatars/avatar-2.jpg",
+        content: "Primera vez que vengo y quedé muy satisfecha. El servicio fue rápido y me explicaron todo el proceso.",
+        rating: 5,
+        badge: "Reseña Verificada"
+    },
+    {
+        name: "Juan Carlos Pérez",
+        role: "Cliente Regular",
+        image: "/img/avatars/avatar-3.jpg",
+        content: "Los mejores precios y un servicio de primera. El personal técnico es muy profesional.",
+        rating: 5,
+        badge: "Cliente Frecuente"
+    },
+    // Más reseñas...
+    {
+        name: "Ana María Rojas",
+        role: "Cliente Frecuente",
+        image: "/img/avatars/avatar-4.jpg",
+        content: "Atención personalizada y excelentes precios. Siempre encuentro lo que necesito.",
+        rating: 5,
+        badge: "Cliente Verificado"
+    },
+    {
+        name: "Pedro Soto",
+        role: "Cliente Regular",
+        image: "/img/avatars/avatar-5.jpg",
+        content: "Gran servicio y asesoría técnica. Recomendado al 100%.",
+        rating: 5,
+        badge: "Reseña Verificada"
+    }
+];
+---
+
+<div class="bg-gradient-to-b from-white to-gray-50/50 py-5"> 
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <!-- Header con diseño mejorado -->
+        <div class="mx-auto max-w-2xl text-center mb-16">
+            <span class="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium text-red-500 bg-red-50 rounded-full mb-4">
+                <span class="w-1 h-1 rounded-full bg-red-500"></span>
+                Opiniones Verificadas
+                <span class="w-1 h-1 rounded-full bg-red-500"></span>
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-4">
+                Lo que dicen nuestros clientes
+            </h2>
+            <p class="text-lg text-gray-600">
+                Descubre por qué más de 1,000 clientes confían en nosotros
+            </p>
+        </div>
+        
+        <!-- Slider Container Mejorado -->
+        <div class="relative px-4">
+            <div class="overflow-hidden">
+                <div id="reviewsContainer" 
+                     class="flex gap-6 snap-x snap-mandatory overflow-x-auto hide-scrollbar pb-8 -mx-4 px-4">
+                    {reviews.map((review) => (
+                        <div class="w-full min-w-[300px] sm:min-w-[380px] flex-shrink-0 snap-center px-2">
+                            <div class="h-full bg-white rounded-2xl p-8 shadow-lg ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                <!-- Rating y Badge -->
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="flex items-center gap-0.5">
+                                        {[...Array(review.rating)].map(() => (
+                                            <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        ))}
+                                    </div>
+                                    <span class="inline-flex items-center rounded-full bg-red-50 px-2.5 py-0.5 text-xs font-medium text-red-700">
+                                        {review.badge}
+                                    </span>
+                                </div>
+
+                                <!-- Contenido -->
+                                <p class="text-gray-700 text-lg leading-relaxed mb-6">"{review.content}"</p>
+
+                                <!-- Info del Cliente -->
+                                <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                                    <div class="h-12 w-12 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white font-semibold text-lg">
+                                        {review.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-semibold text-gray-900">{review.name}</h3>
+                                        <p class="text-sm text-gray-500">{review.role}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Botones de navegación mejorados -->
+            <button id="prevButton" 
+                class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur rounded-full p-3 shadow-lg text-gray-700 hover:text-red-600 focus:outline-none transition-all duration-300 hover:scale-110 hidden lg:block">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <button id="nextButton"
+                class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur rounded-full p-3 shadow-lg text-gray-700 hover:text-red-600 focus:outline-none transition-all duration-300 hover:scale-110 hidden lg:block">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Indicadores de scroll mejorados -->
+        <div class="flex justify-center gap-3 mt-8 lg:hidden">
+            <div class="w-12 h-1.5 rounded-full bg-red-600"></div>
+            <div class="w-12 h-1.5 rounded-full bg-gray-200"></div>
+            <div class="w-12 h-1.5 rounded-full bg-gray-200"></div>
+        </div>
+        
+        <!-- CTA Section mejorada -->
+        <div class="mt-16 text-center">
+            <p class="text-gray-600 mb-6">¿Ya nos visitaste? Comparte tu experiencia</p>
+            <a href="https://www.google.com/search?q=lubricentro+la+esquina&sca_esv=16afa8dc77c0fa71&sxsrf=AHTn8zqVCFgjAzvIwCZS1DhrHAZA60arPA%3A1739482949140&source=hp&ei=RWeuZ5WLBs3X1sQP_NqE4A0&iflsig=ACkRmUkAAAAAZ651VRl11SX3r0oXlgNBKCB63tZ0w6Sv&oq=lubricentro+&gs_lp=Egdnd3Mtd2l6IgxsdWJyaWNlbnRybyAqAggAMgoQIxiABBgnGIoFMgUQABiABDIFEAAYgAQyCBAAGIAEGMkDMgsQABiABBiSAxiKBTILEC4YgAQYxwEYrwEyBRAAGIAEMgUQABiABDILEC4YgAQYxwEYrwEyBRAAGIAESJ0TUABY9wpwAHgAkAEAmAGtAaABwgmqAQM3LjW4AQHIAQD4AQGYAgygAoYKwgIQEAAYgAQYsQMYQxiDARiKBcICChAAGIAEGEMYigXCAhEQLhiABBixAxjRAxiDARjHAcICCxAAGIAEGLEDGIMBwgIOEC4YgAQYsQMY0QMYxwHCAgQQIxgnwgILEC4YgAQYsQMYgwHCAg4QABiABBixAxiDARiKBcICBBAAGAPCAggQABiABBixA8ICCBAAGIAEGJIDwgIOEAAYgAQYsQMYgwEYyQOYAwCSBwM1LjegB8-AAQ&sclient=gws-wiz#lrd=0x9662db87d0030383:0xf2a051a52f67b160,1,,,," 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="inline-flex items-center gap-x-2 rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-8 py-4 text-base font-semibold text-white shadow-lg hover:from-red-500 hover:to-red-600 transition-all duration-300 hover:shadow-red-500/25 hover:-translate-y-0.5">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14c-2.67 0-5.07-1.04-6.87-2.65C7.27 15.54 10.3 14 12 14c1.7 0 4.73 1.54 6.87 3.35C17.07 18.96 14.67 20 12 20z"/>
+                </svg>
+                Calificar en Google
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+
+<script>
+    const container = document.getElementById('reviewsContainer');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    
+    if (container && prevButton && nextButton) {
+        const scrollToNextItem = () => {
+            const itemWidth = container.querySelector('div')?.offsetWidth || 0;
+            container.scrollBy({ left: itemWidth + 24, behavior: 'smooth' });
+        };
+
+        const scrollToPrevItem = () => {
+            const itemWidth = container.querySelector('div')?.offsetWidth || 0;
+            container.scrollBy({ left: -(itemWidth + 24), behavior: 'smooth' });
+        };
+
+        prevButton.addEventListener('click', scrollToPrevItem);
+        nextButton.addEventListener('click', scrollToNextItem);
+
+        const updateButtonVisibility = () => {
+            const isAtStart = container.scrollLeft <= 0;
+            const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 1;
+            
+            prevButton.style.opacity = isAtStart ? '0.5' : '1';
+            nextButton.style.opacity = isAtEnd ? '0.5' : '1';
+        };
+
+        container.addEventListener('scroll', updateButtonVisibility);
+        window.addEventListener('resize', updateButtonVisibility);
+        updateButtonVisibility();
+    }
+</script>

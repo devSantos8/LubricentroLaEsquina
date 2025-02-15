@@ -1,0 +1,15 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={[
+    "relative px-4 sm:px-6 lg:px-8",
+    "mx-auto max-w-7xl py-4", // Reducido de py-12 a py-8
+    className
+]}>
+    <slot />
+</div>

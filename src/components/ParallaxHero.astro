@@ -1,0 +1,49 @@
+---
+interface Props {
+    imageSrc: string;
+    imageAlt: string;
+}
+
+const { imageSrc, imageAlt } = Astro.props;
+---
+
+<div class="relative -mt-16">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+        <div class="parallax-container absolute inset-0">
+            <img 
+                src={imageSrc}
+                alt={imageAlt}
+                class="w-full h-[120%] object-cover brightness-75"
+                style="object-position: center"
+            />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+    </div>
+    <div class="relative z-10">
+        <slot />
+    </div>
+</div>
+
+<script>
+    function handleParallax() {
+        const parallaxContainers = document.querySelectorAll('.parallax-container');
+        
+        parallaxContainers.forEach(container => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.5;
+            (container as HTMLElement).style.transform = `translate3d(0px, ${rate}px, 0px)`;
+        });
+    }
+
+    window.addEventListener('scroll', handleParallax);
+</script>
+
+<style>
+    .parallax-container {
+        will-change: transform;
+    }
+
+    div.relative {
+        min-height: 75vh;
+    }
+</style> 

@@ -1,0 +1,55 @@
+---
+interface Props {
+    delay?: string;
+}
+
+const { delay = "0s" } = Astro.props;
+---
+
+<div class="scroll-animate" style={`transition-delay: ${delay};`}>
+    <slot />
+</div>
+
+<style>
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transition-delay: var(--delay, 0s);
+    }
+
+    .scroll-animate.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    function setupScrollAnimation() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos
+        document.querySelectorAll('.scroll-animate').forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Ejecutar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', setupScrollAnimation);
+    // Para navegación con View Transitions
+    document.addEventListener('astro:page-load', setupScrollAnimation);
+</script>
