@@ -1,10 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://lubricentrolaesquina.cl', // dominio para el sitemap y URLs absolutas
   vite: {
     plugins: [tailwindcss()],
     build: {
@@ -12,8 +13,9 @@ export default defineConfig({
       rollupOptions: {
         output: {
           assetFileNames: 'assets/[name][extname]',
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
+  integrations: [sitemap()], // plugin sitemap 
 });
